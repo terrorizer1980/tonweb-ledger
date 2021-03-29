@@ -97,7 +97,7 @@ export class AppTon {
      * @return {{version: string}}
      */
     async getAppConfiguration() {
-        const response = await this.transport.send(0xe0, 0x01, 0x00, 0x00, 0x00, 0x04);
+        const response = await this.transport.send(0xe0, 0x01, 0x00, 0x00);
         return {
             version: "" + response[0] + "." + response[1] + "." + response[2] // major version, minor version, patch version
         };
@@ -142,15 +142,15 @@ export class AppTon {
     async sign(accountNumber, buffer) {
         const accountNumberBuffer = Buffer.alloc(4);
         accountNumberBuffer.writeInt32BE(accountNumber);
+        const signBuffer = Buffer.concat([accountNumberBuffer, new Buffer(buffer)]);
 
         const response = await this.transport
             .send(
                 0xe0,
-                0x02,
+                0x03,
                 0x00,
                 0x00,
-                accountNumberBuffer,
-                buffer
+                signBuffer
             );
 
         const result = {};
@@ -176,6 +176,7 @@ export class AppTon {
 
         const accountNumberBuffer = Buffer.alloc(4);
         accountNumberBuffer.writeInt32BE(accountNumber);
+        const msgBuffer = Buffer.concat([accountNumberBuffer, new Buffer(await query.signingMessage.toBoc())]);
 
         const response = await this.transport
             .send(
@@ -183,8 +184,7 @@ export class AppTon {
                 0x04,
                 0x00,
                 0x00,
-                accountNumberBuffer,
-                await query.signingMessage.getRepr()
+                msgBuffer
             );
 
         const len = response[0];
