@@ -10589,11 +10589,14 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
-tonweb@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/tonweb/-/tonweb-0.0.12.tgz#ff26b89cca25a491df5d73dd1ede06131178c126"
-  integrity sha512-20sizH8U4iGIac/84Ua/8itusEqUOsDMW7FVCSaYD6TFc7FOyhcuNs98kKM+byAAvuNFRjpBP2h/kbh34bHYig==
+tonweb@^0.0.25:
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/tonweb/-/tonweb-0.0.25.tgz#ba31feb66bc9eed333fb6dc25b159d068b48c345"
+  integrity sha512-5CAy/LLNePj/iTEtBas/V9xm4rnowiAxxiCmeDOkIrSttF3FK3MtrqUl7QSUFho5lFjVrayAQx4n6CX9dpIJhw==
   dependencies:
+    "@ledgerhq/hw-transport-web-ble" "^5.46.0"
+    "@ledgerhq/hw-transport-webhid" "^5.46.0"
+    "@ledgerhq/hw-transport-webusb" "^5.46.0"
     bn.js "^5.1.1"
     ethjs-unit "^0.1.6"
     tweetnacl "^1.0.3"
